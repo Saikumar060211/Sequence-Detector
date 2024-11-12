@@ -165,7 +165,7 @@ module mealy(clk,rst,inp,out);
 ![Screenshot Image 2024-11-11 at 16 06 01_a5b5240c](https://github.com/user-attachments/assets/d65c8df0-bfc3-4918-8497-10ab9fde6295)
 
 
-## Testbench for Sequence Detector (Moore and Mealy FSMs)
+## Testbench for Sequence Detector (Moore FSMs)
 
 ```
 CODE:`timescale 1ns/1ps
@@ -222,8 +222,66 @@ module tb_fsm_sequence;
 
 endmodule
 ```
-## OUTPUT
-![Screenshot Image 2024-11-11 at 16 06 39_00d15bc2](https://github.com/user-attachments/assets/58e91ac8-a833-4afa-bde4-5e1391aa2446)
+OUTPUT:![Screenshot Image 2024-11-11 at 16 06 39_00d15bc2](https://github.com/user-attachments/assets/58e91ac8-a833-4afa-bde4-5e1391aa2446)
+
+
+## Testbench for Sequence Detector (Mealy FSMs)
+```
+// directly test values given
+ 
+`timescale 1ns/1ns
+
+ module mealy_tb;
+
+ wire out;
+
+ reg clk,rst,inp;
+
+ reg [15:0] seq; 
+
+ integer i;
+
+ mealy instance22(clk, rst, inp, out);
+
+ initial begin
+
+     clk=0;
+
+     rst=1;
+
+     seq=16'b1010_0001_1100_0101;
+
+     #5 rst=0;
+
+ end
+
+ always begin
+
+       $dumpfile("mealy_direct.vcd");
+
+             $dumpvars();
+
+     for( i = 0; i <= 15; i = i+1)
+
+         begin
+
+             inp = seq[i];
+
+             #2 clk=1;
+
+             #2 clk=0;
+
+             $display("state = ",instance22.state,"| input = ",inp,"| output = ",out);
+
+         end
+
+        #100 $finish();
+
+ end
+
+ endmodule
+```
+OUTPUT:![Screenshot Image 2024-11-11 at 16 07 35_5fc5b5f6](https://github.com/user-attachments/assets/7c9a0d77-9347-426f-ac59-66dfe2487561)
 
 ## Conclusion
 In this experiment, Moore and Mealy FSMs were successfully designed and simulated to detect the sequence 1011. Both designs worked as expected, with the main difference being that the Moore FSM generated the output based on the current state, while the Mealy FSM generated the output based on both the current state and input. The testbench verified the functionality of both FSMs, demonstrating that the Verilog HDL can effectively model both types of state machines for sequence detection tasks.
