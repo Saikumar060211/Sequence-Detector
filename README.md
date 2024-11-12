@@ -1,8 +1,8 @@
 # Sequence-Detector
-Aim
+##Aim
 To design and simulate a sequence detector using both Moore and Mealy state machine models in Verilog HDL, and verify their functionality through a testbench using the Vivado 2023.1 simulation environment. The objective is to detect a specific sequence of bits (e.g., 1011) and compare the Moore and Mealy designs.
 
-Apparatus Required
+##Apparatus Required
 Vivado 2023.1 or equivalent Verilog simulation tool.
 Computer system with a suitable operating system.
 Procedure
@@ -28,7 +28,7 @@ Save and Document Results:
 
 Capture the waveforms and include the results in the final report.
 
-Verilog Code for Sequence Detector Using Moore FSM
+##Verilog Code for Sequence Detector Using Moore FSM
 
 // moore_sequence_detector.v
 module moore_sequence_detector (
